@@ -1,0 +1,33 @@
+#======================================================================
+#
+# .tasks - 
+#
+# Created by sansiny on 2023/04/24
+# Last Modified: 2023/04/24 04:04:50
+#
+#======================================================================
+# vim: set fenc=utf-8 ft=dosini:
+# see: https://github.com/skywind3000/asynctasks.vim/wiki/Task-Config
+[file-build]
+command=echo unsupported filetype $(VIM_FILETYPE)
+; command:txt/win32=g++ -O2 -Wall -DOY_LOCAL "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)" -lstdc++ -lm -msse3
+command:c,cpp/win32=g++ -O2 -Wall --std=c++2a -g -DOY_LOCAL "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)" -lstdc++ -lm -msse3
+#command:c,cpp/win32=gcc -O2 -Wall -fstrict-aliasing "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)" -Id:/dev/local/include -Ld:/dev/local/lib $(+CFLAGS:) $(+LDFLAGS:) -msse3 -lgdi32 -lws2_32 -liphlpapi -ld3d9 -ld3dx9 -lcmocka -lgtest -lgmock -lstdc++ -lm -lwinmm -lshlwapi
+command:c,cpp/linux=gcc -O2 -Wall -fstrict-aliasing "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)" $(+CFLAGS:) $(+LDFLAGS:) -lstdc++ -lm -msse3 -ldl -lpthread
+
+auto=make
+save=2
+
+[file-run]
+command="$(VIM_FILEPATH)"
+command:c,cpp=$(+wrapper_cpp:) "$(VIM_PATHNOEXT)"
+
+cwd=$(VIM_FILEDIR)
+output=terminal
+#pos=quickfix
+pos=external
+#pos=vim
+; pos=bottom
+#pos=tab
+save=2
+
