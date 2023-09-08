@@ -24,10 +24,10 @@ command:c,cpp=$(+wrapper_cpp:) "$(VIM_PATHNOEXT)"
 
 cwd=$(VIM_FILEDIR)
 output=terminal
-#pos=quickfix
+; pos=quickfix
 pos=external
-#pos=vim
+; pos=vim
 ; pos=bottom
-#pos=tab
+; pos=tab
 save=2
 
